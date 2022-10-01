@@ -8,13 +8,18 @@
 
 import SwiftUI
 import DesignKit
+import APIKit
 
 @main
 struct MyView: App {
+    
+    var network = RequestAPI()
+    
     var body: some Scene {
         WindowGroup {
             ScrollView {
                 HomeView()
+                    .environmentObject(network)
             }
         }
     }

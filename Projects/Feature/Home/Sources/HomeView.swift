@@ -7,8 +7,14 @@
 //
 
 import SwiftUI
+import APIKit
 
 struct HomeView: View {
+    
+    @EnvironmentObject var network: RequestAPI
+    
+    @StateObject private var networks = RequestAPI.shared
+    
     var body: some View {
         
         VStack {
@@ -24,7 +30,7 @@ struct HomeView: View {
                 VStack(alignment: .leading) {
                     Text("안녕하세요!")
                         .font(.system(size: 20))
-                    Text("서울의 유쾌한 막내사자님 🦁")
+                    Text("파주의 유쾌한 막내사자님 🦁")
                         .font(.system(size: 20))
                         .fontWeight(.bold)
                 }
@@ -34,37 +40,42 @@ struct HomeView: View {
             
             HStack {
                 Image.location
-                Text("서울시 강남구 신사동")
+                Text("야당 스타벅스")
                     .font(.system(size: 16))
                 Spacer()
-                Text("17°")
+                Text("24°")
                 Spacer()
             }
-            .frame(height: 42)
-            .background(Color.cellBackground)
-            .cornerRadius(21)
-            .padding(.top, 25)
-            
-            HStack {
-                VStack {
-                    Chart()
-                    List()
+            VStack {
+                ForEach(networks.comment.first?.data.commentList ?? [], id: \.self) { user in
+                    
+                    Text("sdg")
+                    
+                    HStack {
+                        VStack {
+                            Chart()
+                            List()
+                        }
+                        Spacer()
+                    }
+                    .frame(height: 628)
+                    .background(Color.cellBackground)
+                    .cornerRadius(21)
+                    .padding(.top, 25)
+                    
+                    Spacer()
+                    Image.misobuildLogo
                 }
-                Spacer()
             }
-            .frame(height: 628)
-            .background(Color.cellBackground)
-            .cornerRadius(21)
-            .padding(.top, 25)
+            .onAppear {
+                network.fetchData()
+                
+            }
+            .padding(.top, 20)
+            .padding(.leading, 28)
+            .padding(.trailing, 28)
             
-            
-            
-            Spacer()
-            Image.misobuildLogo
         }
-        .padding(.top, 20)
-        .padding(.leading, 28)
-        .padding(.trailing, 28)
     }
 }
-
+ㅎ
