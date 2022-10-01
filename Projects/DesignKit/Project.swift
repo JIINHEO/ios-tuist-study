@@ -13,5 +13,6 @@ private let projectName = "DesignKit"
 let project = Project.makeModule(
     name: projectName,
     product: .staticFramework,
-    dependencies: []
+    dependencies: [],
+    resources: ["Resources/**"]
 )

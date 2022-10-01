@@ -7,13 +7,15 @@
 //
 
 import SwiftUI
+import DesignKit
 
 @main
 struct MyView: App {
     var body: some Scene {
         WindowGroup {
-            Color.red
+            ScrollView {
+                HomeView()
+            }
         }
     }
 }
-
