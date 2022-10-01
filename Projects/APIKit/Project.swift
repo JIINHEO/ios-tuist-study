@@ -9,11 +9,9 @@ import ProjectDescription
 import ProjectDescriptionHelpers
 
 private let projectName = "APIKit"
-private let bundleID = "com.jiin.APIKit"
 
-let project = Project.app(
-  name: projectName,
-  product: .staticFramework,
-  platform: .iOS,
-  dependencies: []
+let project = Project.makeModule(
+    name: projectName,
+    product: .staticFramework,
+    dependencies: []
 )

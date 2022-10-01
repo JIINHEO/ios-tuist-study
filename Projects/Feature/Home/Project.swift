@@ -9,11 +9,12 @@ import ProjectDescription
 import ProjectDescriptionHelpers
 
 private let projectName = "Home"
-private let bundleID = "com.jiin.Home"
 
-let project = Project.app(
-  name: projectName,
-  product: .dynamicLibrary,
-  platform: .iOS,
-  dependencies: []
+let project = Project.makeModule(
+    name: projectName,
+    product: .staticFramework,
+    dependencies: [
+        .project(target: "APIKit", path: .relativeToManifest("../../APIKit")),
+        .project(target: "DesignKit", path: .relativeToManifest("../../DesignKit")),
+    ]
 )
