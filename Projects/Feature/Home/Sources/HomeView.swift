@@ -13,7 +13,7 @@ struct HomeView: View {
     
     @EnvironmentObject var network: RequestAPI
     
-    @StateObject private var networks = RequestAPI.shared
+//    @StateObject private var networks = RequestAPI.shared
     
     var body: some View {
         
@@ -44,33 +44,32 @@ struct HomeView: View {
                     .font(.system(size: 16))
                 Spacer()
                 Text("24°")
-                Spacer()
-            }
+                Spacer()           }
             VStack {
-                ForEach(networks.comment.first?.data.commentList ?? [], id: \.self) { user in
+                ForEach(network.comment.first?.data.commentList ?? [], id: \.self) { user in
                     
-                    Text("sdg")
-                    
-                    HStack {
-                        VStack {
-                            Chart()
-                            List()
-                        }
-                        Spacer()
-                    }
-                    .frame(height: 628)
-                    .background(Color.cellBackground)
-                    .cornerRadius(21)
-                    .padding(.top, 25)
-                    
-                    Spacer()
-                    Image.misobuildLogo
+                    Text(user.nickname)
                 }
             }
             .onAppear {
                 network.fetchData()
                 
             }
+            HStack {
+                VStack {
+                    Chart()
+                    List()
+                }
+                Spacer()
+            }
+            .frame(height: 628)
+            .background(Color.cellBackground)
+            .cornerRadius(21)
+            .padding(.top, 25)
+            
+            Spacer()
+            Image.misobuildLogo
+          
             .padding(.top, 20)
             .padding(.leading, 28)
             .padding(.trailing, 28)
